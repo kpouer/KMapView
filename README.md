@@ -1,3 +1,5 @@
+![Java CI with Maven](https://github.com/kpouer/KMapView/workflows/Java%20CI%20with%20Maven/badge.svg)
+
 # K-MapView
 
 A Swing component able to show a map
