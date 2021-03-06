@@ -14,7 +14,7 @@ You will have to find a tile server. One of the most common choice is OSM tiles.
 You can find various tiles servers here https://wiki.openstreetmap.org/wiki/Tile_servers
 Beware, the term of use varies and most of them will not allow you to use them in a commercial product.
 
-Tiles can be stored in a disk cache (recommended), but that cache is not managed by this component, it is up to you
+Tiles will be stored in a disk cache, but that cache is not managed by this component, it is up to you
 to clean it when you want.
 
 Retrieving queries can be load balanced between multiple servers.
