@@ -34,16 +34,23 @@ public class ImageCacheImpl implements ImageCache {
     private final Map<Tile, Image> map;
     private       Path             cachePath;
 
-    public ImageCacheImpl(String tileServerName, String cachePath, int initialCapacity) throws IOException {
+    /**
+     * Create an image cache
+     * @param tileServerName the name of the tile server
+     * @param cachePath the cache path where the downloaded tiles will be stored on disk
+     * @param capacity the cahe capacity
+     * @throws IOException
+     */
+    public ImageCacheImpl(String tileServerName, String cachePath, int capacity) throws IOException {
         if (cachePath != null) {
             this.cachePath = Path.of(cachePath, tileServerName);
             Files.createDirectories(this.cachePath);
         }
 
-        map = new LinkedHashMap<>(initialCapacity + 1) {
+        map = new LinkedHashMap<>(capacity + 1) {
             @Override
             protected boolean removeEldestEntry(Map.Entry<Tile, Image> eldest) {
-                return size() > initialCapacity;
+                return size() > capacity;
             }
         };
     }
