@@ -232,11 +232,11 @@ public class MapView extends JPanel {
         return tilesTools.longitudeToPoint(longitude, zoom) - getShiftX();
     }
 
-    public double pointScreenToLatitude(int y) {
+    private double pointScreenToLatitude(int y) {
         return tilesTools.position2latitude(y + getShiftY(), zoom);
     }
 
-    public double pointScreenToLongitude(int x) {
+    private double pointScreenToLongitude(int x) {
         return tilesTools.position2longitude(x + getShiftX(), zoom);
     }
 
@@ -250,7 +250,7 @@ public class MapView extends JPanel {
         return target;
     }
 
-    private MapPoint pointScreenToMapPoint(Point point) {
+    public MapPoint pointScreenToMapPoint(Point point) {
         return new MapPoint(point.x + getShiftX(), point.y + getShiftY(), zoom);
     }
 
