@@ -7,6 +7,7 @@ A Swing component able to show a map
 ## Introduction
 
 This component will download from a tile server and show them.
+It is a simple component able to add markers. But there is no search ability included.
 
 ## Dependency
 
