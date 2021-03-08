@@ -1,5 +1,5 @@
 ![Java CI with Maven](https://github.com/kpouer/KMapView/workflows/Java%20CI%20with%20Maven/badge.svg)
-
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.kpouer/k-mapview/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.kpouer/k-mapview)
 # K-MapView
 
 A Swing component able to show a map
@@ -7,6 +7,18 @@ A Swing component able to show a map
 ## Introduction
 
 This component will download from a tile server and show them.
+
+## Dependency
+
+Available through Maven central
+
+```xml
+<dependency>
+    <groupId>com.kpouer</groupId>
+    <artifactId>k-mapview</artifactId>
+    <version>1.0.0</version>
+</dependency>
+```
 
 ## Tiles servers
 
@@ -39,3 +51,7 @@ JFrame frame = new JFrame();
 ## Note
 
 The api is still under development and things might change
+
+## Licence
+
+WKT Parser is open source and licensed under the Apache License 2.0.
