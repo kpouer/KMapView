@@ -54,5 +54,4 @@ JFrame frame = new JFrame();
 The api is still under development and things might change
 
 ## Licence
-
-WKT Parser is open source and licensed under the Apache License 2.0.
+K-MapView is open source and licensed under the Apache License 2.0.
