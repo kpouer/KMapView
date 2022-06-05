@@ -6,7 +6,7 @@
 
     <groupId>com.kpouer</groupId>
     <artifactId>k-mapview</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.0.1</version>
     <name>${project.groupId}:${project.artifactId}</name>
     <description>k-mapview is a Swing component showing map tiles (probably OSM but not only)</description>
     <url>https://github.com/kpouer/KMapView</url>
