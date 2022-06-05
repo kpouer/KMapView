@@ -293,7 +293,7 @@ public class MapView extends JPanel {
         int     startY       = centerTileY - topYTiles * tilesSize;
         boolean hasToRepaint = false;
         for (int x = startX; x < getWidth(); x += tilesSize) {
-            for (int y = startY; y < getWidth(); y += tilesSize) {
+            for (int y = startY; y < getHeight(); y += tilesSize) {
                 try {
                     Image image = tileServer.getTile((x + shiftX) / tilesSize, (y + shiftY) / tilesSize, zoom);
                     if (image != null) {
