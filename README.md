@@ -35,18 +35,30 @@ Retrieving queries can be load balanced between multiple servers.
 ## Example
 
 ```java
-JFrame frame = new JFrame();
-    frame.setContentPane(new MapView(new DefaultTileServer(256,
-    1,
-    18,
-    2,
-    new ImageCacheImpl("OSM", "cache", 1000),
-    "https://a.tile.openstreetmap.org/${z}/${x}/${y}.png",
-    "https://b.tile.openstreetmap.org/${z}/${x}/${y}.png",
-    "https://c.tile.openstreetmap.org/${z}/${x}/${y}.png")));
+import com.kpouer.mapview.tile.DefaultTileServer;
+import com.kpouer.mapview.tile.cache.ImageCacheImpl;
 
-    frame.setSize(800, 600);
-    frame.setVisible(true);
+import javax.swing.*;
+import java.io.IOException;
+
+public class Sample {
+    public static void main(String[] args) throws IOException {
+        JFrame frame = new JFrame();
+        MapView contentPane = new MapView(new DefaultTileServer(256,
+                                                                1,
+                                                                18,
+                                                                2,
+                                                                new ImageCacheImpl("Waze", "cache", 1000),
+                                                                "https://a.tile.openstreetmap.org/${z}/${x}/${y}.png",
+                                                                "https://b.tile.openstreetmap.org/${z}/${x}/${y}.png",
+                                                                "https://c.tile.openstreetmap.org/${z}/${x}/${y}.png")));
+        contentPane.setMouseLocationLabelVisible(false);
+        frame.setContentPane(contentPane);
+
+        frame.setSize(800, 600);
+        frame.setVisible(true);
+    }
+}
 ```
 
 ## Note
