@@ -65,6 +65,15 @@ public class MapView extends JPanel {
         add(mouseLocationLabel);
     }
 
+    /**
+     * Show/hide the mouse location label.
+     *
+     * @param visible true to make the component visible; false to make it invisible
+     */
+    public void setMouseLocationLabelVisible(boolean visible) {
+        mouseLocationLabel.setVisible(visible);
+    }
+
     public void addMarker(Marker marker) {
         markers.add(marker);
         marker.computeLocation(this);
