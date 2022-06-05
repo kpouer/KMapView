@@ -17,7 +17,7 @@ Available through Maven central
 <dependency>
     <groupId>com.kpouer</groupId>
     <artifactId>k-mapview</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 </dependency>
 ```
 
