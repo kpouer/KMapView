@@ -9,17 +9,12 @@ A Swing component able to show a map
 This component will download from a tile server and show them.
 It is a simple component able to add markers. But there is no search ability included.
 
-## Dependency
+![OSM Map with widgets](/doc/OSMWithWidget.jpg)
 
-Available through Maven central
+## Features
 
-```xml
-<dependency>
-    <groupId>com.kpouer</groupId>
-    <artifactId>k-mapview</artifactId>
-    <version>1.0.1</version>
-</dependency>
-```
+The map depends on a tile server. It can be OSM, but not necessary. You can find some examples here see https://wiki.openstreetmap.org/wiki/Tile_servers
+It supports adding widgets to the map (dot, circles, or any other you create).
 
 ## Tiles servers
 
@@ -59,6 +54,18 @@ public class Sample {
         frame.setVisible(true);
     }
 }
+```
+
+## Dependency
+
+Available through Maven central
+
+```xml
+<dependency>
+    <groupId>com.kpouer</groupId>
+    <artifactId>k-mapview</artifactId>
+    <version>1.0.1</version>
+</dependency>
 ```
 
 ## Note
