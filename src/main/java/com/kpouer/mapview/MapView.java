@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Matthieu Casanova
+ * Copyright 2021-2022 Matthieu Casanova
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,7 +32,7 @@ import java.util.Optional;
  * @author Matthieu Casanova
  */
 public class MapView extends JPanel {
-    private final TileServer         tileServer;
+    private TileServer tileServer;
     private final MouseLocationLabel mouseLocationLabel;
 
     private int xPos;
@@ -63,6 +63,15 @@ public class MapView extends JPanel {
         addMouseListener(mouseAdapter);
         addMouseMotionListener(mouseAdapter);
         add(mouseLocationLabel);
+    }
+
+    /**
+     * Set the tile server.
+     * You need to call repaint after calling this
+     * @param tileServer the new tile server
+     */
+    public void setTileServer(TileServer tileServer) {
+        this.tileServer = tileServer;
     }
 
     /**
