@@ -34,13 +34,15 @@ public abstract class Marker {
     protected double              latitude;
     protected int                 x;
     protected int                 y;
+    protected Color               color;
     private   MouseListener       mouseListener;
     private   MouseMotionListener mouseMotionListener;
     private   boolean             dragable;
 
-    protected Marker(double latitude, double longitude) {
+    protected Marker(double latitude, double longitude, Color color) {
         this.longitude = longitude;
         this.latitude  = latitude;
+        this.color     = color;
     }
 
     public void addMouseListener(MouseListener mouseListener) {

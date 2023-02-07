@@ -26,21 +26,18 @@ import java.awt.*;
 @Getter
 @Setter
 public class Rectangle extends Marker {
-
     private int   width;
     private int   height;
-    private Color color;
 
     public Rectangle(double latitude, double longitude, int width, int height, Color color) {
-        super(latitude, longitude);
+        super(latitude, longitude, color);
         this.width  = width;
         this.height = height;
-        this.color  = color;
     }
 
     @Override
     public void paint(Graphics g) {
-        g.setColor(color);
+        g.setColor(getColor());
         g.fillRect(x - width / 2, y - height / 2, width, height);
     }
 

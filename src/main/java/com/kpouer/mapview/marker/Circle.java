@@ -27,13 +27,20 @@ import java.awt.*;
 @Setter
 public class Circle extends Marker {
     private int   radius;
-    private Color color;
 
     public Circle(double latitude, double longitude, int radius, Color color) {
-        super(latitude, longitude);
+        super(latitude, longitude, color);
         this.radius = radius;
-        this.color  = color;
     }
+
+    public int getRadius() {
+        return radius;
+    }
+
+    public void setRadius(int radius) {
+        this.radius = radius;
+    }
+
 
     @Override
     public void paint(Graphics g) {
