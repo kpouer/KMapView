@@ -41,7 +41,6 @@ public class Circle extends Marker {
         this.radius = radius;
     }
 
-
     @Override
     public void paint(Graphics g) {
         g.setColor(color);
