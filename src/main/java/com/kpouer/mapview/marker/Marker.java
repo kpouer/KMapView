@@ -111,6 +111,11 @@ public abstract class Marker {
 
     public abstract boolean contains(Point e);
 
+    /**
+     * Compute the location of the marker on the screen.
+     * It is called by the map view when the map is moved or zoomed.
+     * @param mapView the map view
+     */
     public void computeLocation(MapView mapView) {
         int x = mapView.longitudeToPointScreen(longitude);
         int y = mapView.latitudeToPointScreen(latitude);
