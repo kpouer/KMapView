@@ -23,6 +23,13 @@
             <organizationUrl>https://github.com/kpouer/KMapView.git</organizationUrl>
         </developer>
     </developers>
+    <repositories>
+        <repository>
+            <id>sonatype</id>
+            <name>Sonatype</name>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </repository>
+    </repositories>
     <scm>
         <connection>https://github.com/kpouer/KMapView.git</connection>
         <url>https://github.com/kpouer/KMapView</url>
