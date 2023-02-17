@@ -74,8 +74,8 @@ public class PolygonMarker extends Marker {
 
     @Override
     public boolean contains(Point e) {
-        java.awt.Polygon polygon = new java.awt.Polygon(xpoints, ypoints, xpoints.length);
-        return polygon.contains(e.x, e.y);
+        var tmpPolygon = new java.awt.Polygon(xpoints, ypoints, xpoints.length);
+        return tmpPolygon.contains(e.x, e.y);
     }
 
     @Override
