@@ -20,7 +20,7 @@
         <developer>
             <name>Matthieu Casanova</name>
             <email>chocolat.mou@gmail.com</email>
-            <organizationUrl>https://github.com/kpouer/KMapView.git</organizationUrl>
+            <organizationUrl>https://github.com/kpouer</organizationUrl>
         </developer>
     </developers>
     <repositories>
@@ -43,6 +43,12 @@
         <sonar.organization>matthieu-casanova</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     </properties>
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
     <build>
         <plugins>
             <plugin>
