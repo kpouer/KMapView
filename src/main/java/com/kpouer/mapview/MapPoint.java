@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Matthieu Casanova
+ * Copyright 2021-2023 Matthieu Casanova
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,49 +15,18 @@
  */
 package com.kpouer.mapview;
 
+import lombok.*;
+
 /**
  * @author Matthieu Casanova
  */
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@ToString
 public class MapPoint {
     private int x;
     private int y;
     private int zoom;
-
-    public MapPoint(int x, int y, int zoom) {
-        this.x    = x;
-        this.y    = y;
-        this.zoom = zoom;
-    }
-
-    public MapPoint() {
-    }
-
-    public int getX() {
-        return x;
-    }
-
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    public int getY() {
-        return y;
-    }
-
-    public void setY(int y) {
-        this.y = y;
-    }
-
-    public int getZoom() {
-        return zoom;
-    }
-
-    public void setZoom(int zoom) {
-        this.zoom = zoom;
-    }
-
-    @Override
-    public String toString() {
-        return "MapPoint{x=" + x + ", y=" + y + ", zoom=" + zoom + '}';
-    }
 }

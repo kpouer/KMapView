@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Matthieu Casanova
+ * Copyright 2021-2023 Matthieu Casanova
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,9 +15,14 @@
  */
 package com.kpouer.mapview.tile;
 
+import lombok.Getter;
+import lombok.ToString;
+
 /**
  * @author Matthieu Casanova
  */
+@Getter
+@ToString
 public class Tile {
     private final int x;
     private final int y;
@@ -27,18 +32,6 @@ public class Tile {
         this.x    = x;
         this.y    = y;
         this.zoom = zoom;
-    }
-
-    public int getX() {
-        return x;
-    }
-
-    public int getY() {
-        return y;
-    }
-
-    public int getZoom() {
-        return zoom;
     }
 
     public String getKey() {
@@ -63,10 +56,5 @@ public class Tile {
         result = 31 * result + y;
         result = 31 * result + zoom;
         return result;
-    }
-
-    @Override
-    public String toString() {
-        return "Tile{x=" + x + ", y=" + y + ", zoom=" + zoom + '}';
     }
 }

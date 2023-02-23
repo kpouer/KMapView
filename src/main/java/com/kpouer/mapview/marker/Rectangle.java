@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Matthieu Casanova
+ * Copyright 2021-2023 Matthieu Casanova
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,11 +15,16 @@
  */
 package com.kpouer.mapview.marker;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.awt.*;
 
 /**
  * @author Matthieu Casanova
  */
+@Getter
+@Setter
 public class Rectangle extends Marker {
 
     private int   width;
@@ -31,30 +36,6 @@ public class Rectangle extends Marker {
         this.width  = width;
         this.height = height;
         this.color  = color;
-    }
-
-    public int getWidth() {
-        return width;
-    }
-
-    public void setWidth(int width) {
-        this.width = width;
-    }
-
-    public int getHeight() {
-        return height;
-    }
-
-    public void setHeight(int height) {
-        this.height = height;
-    }
-
-    public Color getColor() {
-        return color;
-    }
-
-    public void setColor(Color color) {
-        this.color = color;
     }
 
     @Override
