@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Matthieu Casanova
+ * Copyright 2021-2023 Matthieu Casanova
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,6 +16,8 @@
 package com.kpouer.mapview.marker;
 
 import com.kpouer.mapview.MapView;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -25,6 +27,8 @@ import java.awt.event.MouseMotionListener;
 /**
  * @author Matthieu Casanova
  */
+@Getter
+@Setter
 public abstract class Marker {
     protected double              longitude;
     protected double              latitude;
@@ -37,22 +41,6 @@ public abstract class Marker {
     protected Marker(double latitude, double longitude) {
         this.longitude = longitude;
         this.latitude  = latitude;
-    }
-
-    public double getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(double longitude) {
-        this.longitude = longitude;
-    }
-
-    public double getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(double latitude) {
-        this.latitude = latitude;
     }
 
     public void addMouseListener(MouseListener mouseListener) {
@@ -73,7 +61,7 @@ public abstract class Marker {
 
     public void processMouseEvent(MouseEvent e) {
         e.setSource(this);
-        MouseListener listener = mouseListener;
+        var listener = mouseListener;
         if (listener != null) {
             int id = e.getID();
             switch (id) {
@@ -98,7 +86,7 @@ public abstract class Marker {
 
     public void processMouseMotionEvent(MouseEvent e) {
         e.setSource(this);
-        MouseMotionListener listener = mouseMotionListener;
+        var listener = mouseMotionListener;
         if (listener != null) {
             int id = e.getID();
             switch (id) {
@@ -112,33 +100,9 @@ public abstract class Marker {
         }
     }
 
-    public int getX() {
-        return x;
-    }
-
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    public int getY() {
-        return y;
-    }
-
-    public void setY(int y) {
-        this.y = y;
-    }
-
     public void setLocation(int x, int y) {
         this.x = x;
         this.y = y;
-    }
-
-    public boolean isDragable() {
-        return dragable;
-    }
-
-    public void setDragable(boolean dragable) {
-        this.dragable = dragable;
     }
 
     public abstract void paint(Graphics g);
