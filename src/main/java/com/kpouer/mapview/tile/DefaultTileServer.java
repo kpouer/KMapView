@@ -85,6 +85,7 @@ public class DefaultTileServer implements TileServer {
                         }
                     }
                 } catch (IOException ignored) {
+                    // do nothing
                 }
             });
         }
