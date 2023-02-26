@@ -17,6 +17,8 @@ package com.kpouer.mapview.marker;
 
 import com.kpouer.mapview.MapView;
 import com.kpouer.wkt.shape.Polygon;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.awt.*;
 
@@ -32,7 +34,11 @@ public class PolygonMarker extends Marker {
     private final int[] xpoints;
     private final int[] ypoints;
     private final int   width;
-    private final Color borderColor;
+    @Setter
+    @Getter
+    private Color borderColor;
+    @Setter
+    @Getter
     private boolean filled;
 
     /**
@@ -66,10 +72,6 @@ public class PolygonMarker extends Marker {
         } else {
             g.drawPolygon(xpoints, ypoints, xpoints.length);
         }
-    }
-
-    public void setFilled(boolean filled) {
-        this.filled = filled;
     }
 
     @Override
