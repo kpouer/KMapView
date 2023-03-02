@@ -49,7 +49,7 @@ public class PolygonMarker extends Marker {
      * @param filled true if the polygon is filled
      */
     public PolygonMarker(Polygon polygon, int width, Color color, boolean filled) {
-        super(polygon.getBarycenter().getX(), polygon.getBarycenter().getY(), color);
+        super(polygon.getBarycenter().getY(), polygon.getBarycenter().getX(), color);
         this.polygon = polygon;
         xpoints = new int[polygon.getNpoints()];
         ypoints = new int[polygon.getNpoints()];
