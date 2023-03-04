@@ -19,6 +19,8 @@ import com.kpouer.mapview.marker.Marker;
 import com.kpouer.mapview.tile.TileServer;
 import com.kpouer.mapview.tile.TilesTools;
 import com.kpouer.mapview.widget.MouseLocationLabel;
+import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
@@ -26,17 +28,18 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Optional;
 
 /**
  * @author Matthieu Casanova
  */
+@Slf4j
 public class MapView extends JPanel {
     private TileServer tileServer;
     private final MouseLocationLabel mouseLocationLabel;
 
     private int xPos;
     private int yPos;
+    @Getter
     private int zoom = 13;
 
     private final TilesTools             tilesTools;
@@ -71,6 +74,7 @@ public class MapView extends JPanel {
      * @param tileServer the new tile server
      */
     public void setTileServer(TileServer tileServer) {
+        log.info("setTileServer: {}", tileServer);
         this.tileServer = tileServer;
     }
 
@@ -173,10 +177,6 @@ public class MapView extends JPanel {
             }
         }
         setCenter(minLat + (maxLat - minLat) / 2, minLon + (maxLon - minLon) / 2, zoom);
-    }
-
-    public int getZoom() {
-        return zoom;
     }
 
     public void setZoom(int zoom) {
