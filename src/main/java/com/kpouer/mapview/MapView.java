@@ -74,8 +74,10 @@ public class MapView extends JPanel {
      * @param tileServer the new tile server
      */
     public void setTileServer(TileServer tileServer) {
-        log.info("setTileServer: {}", tileServer);
-        this.tileServer = tileServer;
+        if (this.tileServer != tileServer) {
+            log.info("setTileServer: {}", tileServer);
+            this.tileServer = tileServer;
+        }
     }
 
     /**
