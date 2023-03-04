@@ -361,7 +361,7 @@ public class MapView extends JPanel {
             var point = e.getPoint();
             var first = markers
                 .stream()
-                .filter(Marker::isDragable)
+                .filter(Marker::isDraggable)
                 .filter(marker -> marker.contains(point))
                 .findFirst();
             first.ifPresent(marker -> draggingMarker = marker);

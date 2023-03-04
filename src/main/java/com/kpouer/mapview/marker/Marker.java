@@ -37,7 +37,7 @@ public abstract class Marker {
     protected Color               color;
     private   MouseListener       mouseListener;
     private   MouseMotionListener mouseMotionListener;
-    private   boolean             dragable;
+    private   boolean             draggable;
 
     protected Marker(double latitude, double longitude, Color color) {
         this.longitude = longitude;
