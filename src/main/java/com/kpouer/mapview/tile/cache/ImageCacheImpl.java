@@ -16,6 +16,7 @@
 package com.kpouer.mapview.tile.cache;
 
 import com.kpouer.mapview.tile.Tile;
+import lombok.EqualsAndHashCode;
 import org.jetbrains.annotations.Nullable;
 
 import javax.imageio.ImageIO;
@@ -86,6 +87,7 @@ public class ImageCacheImpl implements ImageCache {
         return cachePath.resolve(tile.getKey() + ".png");
     }
 
+    @EqualsAndHashCode(callSuper = true)
     private static class TileImageLinkedHashMap extends LinkedHashMap<Tile, Image> {
         private final int capacity;
 
