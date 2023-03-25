@@ -19,9 +19,9 @@ import com.kpouer.mapview.marker.Marker;
 import com.kpouer.mapview.tile.TileServer;
 import com.kpouer.mapview.tile.TilesTools;
 import com.kpouer.mapview.widget.MouseLocationLabel;
+import jakarta.annotation.Nullable;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
-import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
 import java.awt.*;

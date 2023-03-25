@@ -16,8 +16,8 @@
 package com.kpouer.mapview.tile.cache;
 
 import com.kpouer.mapview.tile.Tile;
+import jakarta.annotation.Nullable;
 import lombok.EqualsAndHashCode;
-import org.jetbrains.annotations.Nullable;
 
 import javax.imageio.ImageIO;
 import java.awt.*;

@@ -16,12 +16,11 @@
 package com.kpouer.mapview.tile;
 
 import com.kpouer.mapview.tile.cache.ImageCache;
-import org.jetbrains.annotations.Nullable;
+import jakarta.annotation.Nullable;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.BufferedInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
