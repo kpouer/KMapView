@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Matthieu Casanova
+ * Copyright 2021-2023 Matthieu Casanova
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,10 +21,10 @@ import com.kpouer.mapview.MapPoint;
  * @author Matthieu Casanova
  */
 public class TilesTools {
-    private static final double minLatitude  = -85.05112878;
-    private static final double maxLatitude  = 85.05112878;
-    private static final double minLongitude = -180;
-    private static final double maxLongitude = 180;
+    private static final double MIN_LATITUDE = -85.05112878;
+    private static final double MAX_LATITUDE  = 85.05112878;
+    private static final double MIN_LONGITUDE = -180;
+    private static final double MAX_LONGITUDE = 180;
 
     private final int tileSize;
 
@@ -57,11 +57,11 @@ public class TilesTools {
     }
 
     public double clipLatitude(double latitude) {
-        return clip(latitude, minLatitude, maxLatitude);
+        return clip(latitude, MIN_LATITUDE, MAX_LATITUDE);
     }
 
     public double clipLongitude(double longitude) {
-        return clip(longitude, minLongitude, maxLongitude);
+        return clip(longitude, MIN_LONGITUDE, MAX_LONGITUDE);
     }
 
     private double clip(double value, double min, double max) {

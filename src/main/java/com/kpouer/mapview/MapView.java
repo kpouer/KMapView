@@ -1,5 +1,5 @@
 /*
- * Copyright 2021-2022 Matthieu Casanova
+ * Copyright 2021-2023 Matthieu Casanova
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,6 +19,8 @@ import com.kpouer.mapview.marker.Marker;
 import com.kpouer.mapview.tile.TileServer;
 import com.kpouer.mapview.tile.TilesTools;
 import com.kpouer.mapview.widget.MouseLocationLabel;
+import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
@@ -26,17 +28,18 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Optional;
 
 /**
  * @author Matthieu Casanova
  */
+@Slf4j
 public class MapView extends JPanel {
     private TileServer tileServer;
     private final MouseLocationLabel mouseLocationLabel;
 
     private int xPos;
     private int yPos;
+    @Getter
     private int zoom = 13;
 
     private final TilesTools             tilesTools;
@@ -58,7 +61,7 @@ public class MapView extends JPanel {
                                                getHeight() - mouseLocationLabel.getHeight());
             }
         });
-        MyMouseAdapter mouseAdapter = new MyMouseAdapter();
+        var mouseAdapter = new MyMouseAdapter();
         addMouseWheelListener(mouseAdapter);
         addMouseListener(mouseAdapter);
         addMouseMotionListener(mouseAdapter);
@@ -71,7 +74,10 @@ public class MapView extends JPanel {
      * @param tileServer the new tile server
      */
     public void setTileServer(TileServer tileServer) {
-        this.tileServer = tileServer;
+        if (this.tileServer != tileServer) {
+            log.info("setTileServer: {}", tileServer);
+            this.tileServer = tileServer;
+        }
     }
 
     /**
@@ -146,13 +152,13 @@ public class MapView extends JPanel {
         if (markers.isEmpty()) {
             return;
         }
-        Marker firstMarker = markers.get(0);
+        var firstMarker = markers.get(0);
         double minLat      = firstMarker.getLatitude();
         double minLon      = firstMarker.getLongitude();
         double maxLat      = firstMarker.getLatitude();
         double maxLon      = firstMarker.getLongitude();
         for (int i = 1; i < markers.size(); i++) {
-            Marker marker = markers.get(i);
+            var marker = markers.get(i);
             minLat = Math.min(minLat, marker.getLatitude());
             minLon = Math.min(minLon, marker.getLongitude());
             maxLat = Math.max(maxLat, marker.getLatitude());
@@ -173,10 +179,6 @@ public class MapView extends JPanel {
             }
         }
         setCenter(minLat + (maxLat - minLat) / 2, minLon + (maxLon - minLon) / 2, zoom);
-    }
-
-    public int getZoom() {
-        return zoom;
     }
 
     public void setZoom(int zoom) {
@@ -304,7 +306,7 @@ public class MapView extends JPanel {
         for (int x = startX; x < getWidth(); x += tilesSize) {
             for (int y = startY; y < getHeight(); y += tilesSize) {
                 try {
-                    Image image = tileServer.getTile((x + shiftX) / tilesSize, (y + shiftY) / tilesSize, zoom);
+                    var image = tileServer.getTile((x + shiftX) / tilesSize, (y + shiftY) / tilesSize, zoom);
                     if (image != null) {
                         g.drawImage(image, x, y, null);
                     } else {
@@ -324,7 +326,7 @@ public class MapView extends JPanel {
     @Override
     protected void processMouseEvent(MouseEvent e) {
         super.processMouseEvent(e);
-        Point point = e.getPoint();
+        var point = e.getPoint();
         markers.stream()
                .filter(marker -> marker.contains(point))
                .forEach(marker -> marker.processMouseEvent(e));
@@ -333,7 +335,7 @@ public class MapView extends JPanel {
     @Override
     protected void processMouseMotionEvent(MouseEvent e) {
         super.processMouseMotionEvent(e);
-        Point point = e.getPoint();
+        var point = e.getPoint();
         markers.stream()
                .filter(marker -> marker.contains(point))
                .forEach(marker -> marker.processMouseMotionEvent(e));
@@ -347,7 +349,6 @@ public class MapView extends JPanel {
 
         @Nullable
         private Point  startDrag;
-        private int    pendingRepaint;
         @Nullable
         private Marker draggingMarker;
 
@@ -359,10 +360,10 @@ public class MapView extends JPanel {
 
         @Override
         public void mousePressed(MouseEvent e) {
-            Point point = e.getPoint();
-            Optional<Marker> first = markers
+            var point = e.getPoint();
+            var first = markers
                 .stream()
-                .filter(Marker::isDragable)
+                .filter(Marker::isDraggable)
                 .filter(marker -> marker.contains(point))
                 .findFirst();
             first.ifPresent(marker -> draggingMarker = marker);
@@ -396,8 +397,8 @@ public class MapView extends JPanel {
                 return;
             }
             tileServer.cancelPendingZoom(newZoom);
-            MapPoint mousePoint    = pointScreenToMapPoint(e.getPoint());
-            MapPoint newMousePoint = tilesTools.zoom(mousePoint, zoom, newZoom);
+            var mousePoint    = pointScreenToMapPoint(e.getPoint());
+            var newMousePoint = tilesTools.zoom(mousePoint, zoom, newZoom);
 
             setCenter(newMousePoint.getX() - e.getX() + getWidth() / 2,
                       newMousePoint.getY() - e.getY() + getHeight() / 2,

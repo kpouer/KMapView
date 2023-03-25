@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Matthieu Casanova
+ * Copyright 2021-2023 Matthieu Casanova
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -63,9 +63,9 @@ public class DefaultTileServer implements TileServer {
     @Override
     @Nullable
     public Image getTile(int x, int y, int zoom) throws IOException {
-        Tile tile = new Tile(x, y, zoom);
+        var tile = new Tile(x, y, zoom);
 
-        Image image = imageCache.getTile(tile);
+        var image = imageCache.getTile(tile);
         if (image != null) {
             return image;
         }
@@ -78,13 +78,14 @@ public class DefaultTileServer implements TileServer {
             executorService.submit(() -> {
                 try {
                     if (retrieveQueue.contains(tile)) {
-                        String tileUrl = getTileUrl(tile);
+                        var tileUrl = getTileUrl(tile);
                         imageCache.setTile(tile, getImage(tileUrl));
                         synchronized (retrieveQueue) {
                             retrieveQueue.remove(tile);
                         }
                     }
                 } catch (IOException ignored) {
+                    // do nothing
                 }
             });
         }
@@ -99,14 +100,12 @@ public class DefaultTileServer implements TileServer {
     }
 
     private static Image getImage(String urlString) throws IOException {
-        URL               url  = new URL(urlString);
-        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        var url = new URL(urlString);
+        var conn = (HttpURLConnection) url.openConnection();
         conn.setRequestProperty("User-Agent", "K-Mapview");
         conn.setRequestMethod("GET");
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        try (BufferedInputStream inputStream = new BufferedInputStream(conn.getInputStream())) {
-            Image image = ImageIO.read(inputStream);
-            return image;
+        try (var inputStream = new BufferedInputStream(conn.getInputStream())) {
+            return ImageIO.read(inputStream);
         }
     }
 
@@ -126,7 +125,7 @@ public class DefaultTileServer implements TileServer {
     }
 
     private String getTileUrl(Tile tile) {
-        String nextUrlPattern = urlPatterns[urlPatternIndex++ % urlPatterns.length];
+        var nextUrlPattern = urlPatterns[urlPatternIndex++ % urlPatterns.length];
         return nextUrlPattern.replace("${z}", Integer.toString(tile.getZoom()))
                              .replace("${x}", Integer.toString(tile.getX()))
                              .replace("${y}", Integer.toString(tile.getY()));

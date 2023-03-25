@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Matthieu Casanova
+ * Copyright 2021-2023 Matthieu Casanova
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,40 +15,18 @@
  */
 package com.kpouer.mapview;
 
+import lombok.*;
+
 /**
  * @author Matthieu Casanova
  */
+@AllArgsConstructor
+@Getter
+@Setter
+@ToString
+@NoArgsConstructor
 public class LatLng {
     private double lat;
     private double lon;
-
-    public LatLng(double lat, double lon) {
-        this.lat = lat;
-        this.lon = lon;
-    }
-
-    public LatLng() {
-    }
-
-    public double getLat() {
-        return lat;
-    }
-
-    public void setLat(double lat) {
-        this.lat = lat;
-    }
-
-    public double getLon() {
-        return lon;
-    }
-
-    public void setLon(double lon) {
-        this.lon = lon;
-    }
-
-    @Override
-    public String toString() {
-        return "LatLng{lat=" + lat + ", lon=" + lon + '}';
-    }
 }
 

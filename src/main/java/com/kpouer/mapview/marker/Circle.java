@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Matthieu Casanova
+ * Copyright 2021-2023 Matthieu Casanova
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,19 +15,22 @@
  */
 package com.kpouer.mapview.marker;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.awt.*;
 
 /**
  * @author Matthieu Casanova
  */
+@Getter
+@Setter
 public class Circle extends Marker {
     private int   radius;
-    private Color color;
 
     public Circle(double latitude, double longitude, int radius, Color color) {
-        super(latitude, longitude);
+        super(latitude, longitude, color);
         this.radius = radius;
-        this.color  = color;
     }
 
     public int getRadius() {
@@ -36,14 +39,6 @@ public class Circle extends Marker {
 
     public void setRadius(int radius) {
         this.radius = radius;
-    }
-
-    public Color getColor() {
-        return color;
-    }
-
-    public void setColor(Color color) {
-        this.color = color;
     }
 
     @Override

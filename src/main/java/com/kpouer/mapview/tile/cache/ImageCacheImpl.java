@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Matthieu Casanova
+ * Copyright 2021-2023 Matthieu Casanova
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,6 +16,7 @@
 package com.kpouer.mapview.tile.cache;
 
 import com.kpouer.mapview.tile.Tile;
+import lombok.EqualsAndHashCode;
 import org.jetbrains.annotations.Nullable;
 
 import javax.imageio.ImageIO;
@@ -47,18 +48,13 @@ public class ImageCacheImpl implements ImageCache {
             Files.createDirectories(this.cachePath);
         }
 
-        map = new LinkedHashMap<>(capacity + 1) {
-            @Override
-            protected boolean removeEldestEntry(Map.Entry<Tile, Image> eldest) {
-                return size() > capacity;
-            }
-        };
+        map = new TileImageLinkedHashMap(capacity);
     }
 
     @Nullable
     @Override
     public Image getTile(Tile tile) throws IOException {
-        Image image = map.get(tile);
+        var image = map.get(tile);
         if (image == null) {
             image = getFromDisk(tile);
             if (image != null) {
@@ -73,7 +69,7 @@ public class ImageCacheImpl implements ImageCache {
         if (cachePath == null) {
             return null;
         }
-        Path keyPath = getPath(tile);
+        var keyPath = getPath(tile);
         if (Files.exists(keyPath)) {
             return ImageIO.read(keyPath.toFile());
         }
@@ -83,11 +79,26 @@ public class ImageCacheImpl implements ImageCache {
     @Override
     public void setTile(Tile tile, Image image) throws IOException {
         map.put(tile, image);
-        Path path = getPath(tile);
+        var path = getPath(tile);
         ImageIO.write((RenderedImage) image, "png", path.toFile());
     }
 
     private Path getPath(Tile tile) {
         return cachePath.resolve(tile.getKey() + ".png");
+    }
+
+    @EqualsAndHashCode(callSuper = true)
+    private static class TileImageLinkedHashMap extends LinkedHashMap<Tile, Image> {
+        private final int capacity;
+
+        TileImageLinkedHashMap(int capacity) {
+            super(capacity + 1);
+            this.capacity = capacity;
+        }
+
+        @Override
+        protected boolean removeEldestEntry(Map.Entry<Tile, Image> eldest) {
+            return size() > capacity;
+        }
     }
 }
