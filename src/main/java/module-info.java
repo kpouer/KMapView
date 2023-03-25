@@ -3,7 +3,7 @@ module com.kpouer.mapview {
     requires org.slf4j;
     requires com.kpouer.wkt;
     requires static lombok;
-    requires static org.jetbrains.annotations;
+    requires static jakarta.annotation;
     exports com.kpouer.mapview;
     exports com.kpouer.mapview.marker;
     exports com.kpouer.mapview.tile;
